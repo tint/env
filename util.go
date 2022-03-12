@@ -74,9 +74,11 @@ func Int(name string, value ...int) int {
 
 func Duration(name string, value ...time.Duration) time.Duration {
 	if val, ok := Lookup(name); ok {
-		n, err := strconv.Atoi(val)
-		if err == nil {
+		if n, err := strconv.Atoi(val); err == nil {
 			return time.Duration(n)
+		}
+		if d, err := time.ParseDuration(val); err == nil {
+			return d
 		}
 	}
 	if len(value) > 0 {
