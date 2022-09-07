@@ -28,6 +28,6 @@ func Setup(root ...string) {
 	AppEnv = String("APP_ENV", "release")
 	if len(AppEnv) > 0 {
 		currEnvFile := ".env." + strings.ToLower(AppEnv)
-		godotenv.Overload(RootPath + currEnvFile)
+		godotenv.Overload(RootPath + "/" + currEnvFile)
 	}
 }
